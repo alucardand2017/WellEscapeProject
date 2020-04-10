@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //[SerializeField] // para aparecer no inspector do player
-    private float velocidade = 2; // defini a velocidade do player 
+    [SerializeField] // para aparecer no inspector do player
+    private float velocidade = 4; // defini a velocidade do player 
+    [SerializeField]
+    private float forcapulo = 1;
 
     private Rigidbody2D rb2D; //criação de variável de manipulação do rigidbody do player
     private bool eLadoDireito; //parametro para identificar o lado q o player está virado para o pivotamento de sprite
     private Animator animator; //criação de variavel de manipulaçao do animator
     float horizontal;           //variavel para controlar player 1 Eixo X. 
-
+    //float vertical;
 
 
 
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();         //Coleta os componentes do player
         animator = GetComponent<Animator>();        // --
         eLadoDireito = transform.localScale.x > 0; // --
+        //transform.position
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -29,6 +32,10 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");   //coloca na variavel o valor o eixo Horizontal (config A e B na Unity)
         Movimentar(horizontal);                     //funçao de deslocamento que recebe o valor do eixo X (-1~1)
         MudarDirecao(horizontal);                   //função de direção que recebe o valor do eixo X (-1~1)
+        if(Input.GetKeyDown(KeyCode.W))             //condição para executar o pulo
+            {
+            rb2D.AddForce(transform.up * forcapulo, ForceMode2D.Impulse);  //aplica uma força no player para cima  
+            }
     }
 
     //******************************FUNÇÕES PARA OS CONTROLES***************************************************
@@ -39,8 +46,7 @@ public class Player : MonoBehaviour
         rb2D.velocity = new Vector2(h*velocidade, rb2D.velocity.y); //parametro velocidade do rb2D = (eixo X * velocidade, mantem eixo y)
         animator.SetFloat("velocidade",Mathf.Abs(h));               //pega o valor absoluto do eixo X (-1 <= x <= 1) e joga na variavel velocidade
     }
-    
-    //FUNÇÃO AUXILIAR PARA MUDANÇA DE DIREÇAO
+        //FUNÇÃO AUXILIAR PARA MUDANÇA DE DIREÇAO
     private void MudarDirecao (float horizontal) //pega a variavel do eixo X
     {
         if(horizontal > 0 && !eLadoDireito || horizontal < 0 && eLadoDireito)// se (X > 0 && sprite pra esquerda < 0 OU X < 0 && sprite pra direita)
