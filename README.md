@@ -4,5 +4,8 @@
 
 Obscuro é um game feito na Unity 2D em terceira pessoa no estilo ‘Plataform’. O jogo inicia com o despertar do protagonista Maison em um poço fundo e cheio de mistérios. Sua missão nesse é game encontrar os prontuários espalhados no local, tentando desvendar assim os mistérios do game, como do porquê estar nesse local, quem são as pessoas que estão atrás dele para prende-lo, e porque ele carrega um machado em suas mãos.
 
+![image](https://github.com/alucardand2017/WellEscapeProject/assets/39005073/99291939-8af0-40c4-ae92-272fc2b27abb)
+
+
 Game feito em parceria com Vanderson Balieiro para a gameJam realizada na Itch.io em 2020, utilizando a linguagem C#.
 
